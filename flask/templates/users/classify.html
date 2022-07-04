@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "nav.html" %}
+
+
+<div class="cov">
+
+  <div class="cls">
+    <form class="form" action="/submit" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <h3><label style="color:white" for="pwd">Upload Your Image :</label></h3>
+        <div>          
+          <input type="file" class="form-control" name="my_image" id="pwd">
+        </div>
+      </div>
+
+      <div class="form-group">        
+        <div>
+          <button type="submit" class="btn">Submit</button>
+        </div>
+      </div>
+    <br> 
+        {% if prediction %}
+        <center>
+        <img src="{{img_path}}">
+        <br>
+        <h2> Your Prediction   : <i> {{prediction}} </i></h2>
+        </center>
+        {% endif %}
+    </form>
+  </div>  </div>
+  {% include 'footer.html' %}
+{% endblock %}

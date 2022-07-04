@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "nav.html" %}
+<div>
+    <h1 style="text-align: center">History</h1>
+</div>
+
+    <div class="cov">
+        <br><div>
+    <h1 style="text-align: center">Profile</h1>
+    
+</div>
+
+<center>
+        {% for row in admin %}
+    <form>
+        <div class="form-group">
+    <h3>Username : {{row[2]}}</h3>
+        </div><br>
+        <div class="form-group">
+    <h3>Email : {{row[1]}}</h3>
+        </div><br>
+    </form>
+
+        {% endfor %}
+</center>
+    </div>
+
+
+{% include 'footer.html' %}
+{% endblock %}

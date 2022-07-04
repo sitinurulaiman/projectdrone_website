@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "nav.html" %}
+<div>
+    <h1 style="text-align: center">ADD INFO</h1>
+</div>
+<br><br>
+<h1>Add Post</h1>
+
+<form action="{{ url_for('addinfo') }}" method="POST" enctype="multipart/form-data" >
+
+  <label for="num">Post Number:</label>
+  <input type="number" id="num" name="num"><br><br>
+
+  <label for="title">Title</label>
+  <input type="text" id="title" name="title"><br><br>
+
+  <label for="info_image">Image</label>
+  <input type="file" id="info_image" name="info_image" class="form-control"><br><br>
+
+  <label for="description">Description</label>
+  <input type="text" id="description" name="description"><br><br>
+
+  <label for="info_topic">Topic</label>
+  <div class="form-group">        
+    <select id="info_topic" name="info_topic">
+    <option selected disabled >-Select-</option>
+      <option value="Farming">Farming</option>
+      <option value="Monitoring">Monitoring</option>
+      <option value="Fields and Soils Analysis">Fields and Soils Analysis</option>
+    </select>
+
+    </div><br>
+    {{ msg }}
+    <button type="submit" class="btn">Submit</button>
+</form>
+
+    <center>
+        <h1>Post</h1>
+        <table >
+            <thead>  
+                <tr>
+
+                    <th >No.</th>  
+                    <th>Topic</th>
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>Info</th>
+                    <th>Timestamp</th>
+                    <th>Update</th>
+
+
+
+                </tr>
+            </thead>    
+            <tbody>    
+            {% for row in info %}    
+                    <tr>
+                        <td>{{row[1]}}</td>
+                        <td>{{row[5]}}</td>
+                        <td>{{row[2]}}</td>
+                        <td><img src="{{row[3]}}"></td>
+                        <td>{{row[4]}}</td>
+                        <td>{{row[6]}}</td>
+                        <td>
+                            <a href="/deleteinfo/{{ row[0] }}" onclick="return conform('Confirm Delete?')">Delete</a>
+                            <a href="/getinfo/{{ row[0] }}" >Edit</a>
+
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </center>
+    <br>
+
+    {% include 'footer.html' %}
+
+
+{% endblock %}
